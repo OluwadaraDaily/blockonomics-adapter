@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Union
+from typing import Optional
 from app import api
 
 app = FastAPI()
@@ -19,14 +19,11 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/price")
-async def get_btc_price():
-    response = await api.get_btc_price()
+async def get_btc_price(currency_code : Optional[str] = "USD"):
+    response = await api.get_btc_price(currency_code=currency_code)
     return response;
 
 @app.post("/new_address")
 async def get_new_address():
     response = await api.get_new_address()
-    print('-----------------')
-    print('RESPONSE =>', response)
-    print('------------------')
     return response;

@@ -24,7 +24,6 @@ async def get_new_address():
     "Authorization": f"Bearer {BLOCKONOMICS_API_KEY}"
   }
   response = requests.post(url, json={}, headers=headers)
-  print('NEW ADDRESS =>', response.json())
   if response.status_code == 200:
     return response.json()
   else:
